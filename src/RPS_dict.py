@@ -18,8 +18,15 @@ class GameResult(IntEnum):
 
 Victories = {
     GameAction.Rock: GameAction.Paper,
+    GameAction.Rock: GameAction.Spok,
     GameAction.Paper: GameAction.Scissors,
-    GameAction.Scissors: GameAction.Rock
+    GameAction.Paper: GameAction.Lizzard,
+    GameAction.Scissors: GameAction.Rock,
+    GameAction.Scissors: GameAction.Spok,
+    GameAction.Lizzard: GameAction.Scissors,
+    GameAction.Lizzard: GameAction.Rock,
+    GameAction.Spok: GameAction.Paper,
+    GameAction.Spok: GameAction.Lizzard
 }
 
 user_action_history = []
