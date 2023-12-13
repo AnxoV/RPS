@@ -6,6 +6,8 @@ class GameAction(IntEnum):
     Rock = 0
     Paper = 1
     Scissors = 2
+    Lizzard = 3
+    Spok = 4
 
 
 class GameResult(IntEnum):
