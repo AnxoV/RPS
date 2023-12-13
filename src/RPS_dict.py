@@ -3,7 +3,6 @@ from enum import IntEnum
 
 
 class GameAction(IntEnum):
-
     Rock = 0
     Paper = 1
     Scissors = 2
@@ -20,6 +19,8 @@ Victories = {
     GameAction.Paper: GameAction.Scissors,
     GameAction.Scissors: GameAction.Rock
 }
+
+user_action_history = []
 
 def assess_game(user_action, computer_action):
 
@@ -60,7 +61,32 @@ def assess_game(user_action, computer_action):
 
 
 def get_computer_action():
-    computer_selection = random.randint(0, len(GameAction) - 1)
+    if len(user_action_history) <= 1:
+        random_number = random.randint(0, len(GameAction)-1)
+        computer_selection = GameAction(random_number)
+    else:
+        user_action_occurences = {}
+        for action in user_action_history:
+            if action in user_action_occurences:
+                user_action_occurences[action] += 1
+            else:
+                user_action_occurences[action] = 1
+        
+        user_action_probability = {}
+        for action in user_action_occurences.keys():
+            user_action_used = user_action_occurences[action]
+            total_actions = len(user_action_history)
+            user_action_probability[action] = user_action_used / total_actions
+
+        sorted_user_action_probability = dict(sorted(
+            user_action_probability.items(),
+            key=lambda item: item[1]
+        ))
+
+        predicted_next_user_move = list(sorted_user_action_probability.keys())[0]
+        counter_move = Victories[predicted_next_user_move]
+        computer_selection = counter_move
+
     computer_action = GameAction(computer_selection)
     print(f"Computer picked {computer_action.name}.")
 
@@ -73,6 +99,8 @@ def get_user_action():
     game_choices_str = ", ".join(game_choices)
     user_selection = int(input(f"\nPick a choice ({game_choices_str}): "))
     user_action = GameAction(user_selection)
+
+    user_action_history.append(user_action)
 
     return user_action
 
