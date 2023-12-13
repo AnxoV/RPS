@@ -6,7 +6,7 @@ class GameAction(IntEnum):
     Rock = 0
     Paper = 1
     Scissors = 2
-    Lizzard = 3
+    Lizard = 3
     Spock = 4
 
 
@@ -20,13 +20,13 @@ Victories = {
     GameAction.Rock: GameAction.Paper,
     GameAction.Rock: GameAction.Spock,
     GameAction.Paper: GameAction.Scissors,
-    GameAction.Paper: GameAction.Lizzard,
+    GameAction.Paper: GameAction.Lizard,
     GameAction.Scissors: GameAction.Rock,
     GameAction.Scissors: GameAction.Spock,
-    GameAction.Lizzard: GameAction.Scissors,
-    GameAction.Lizzard: GameAction.Rock,
+    GameAction.Lizard: GameAction.Scissors,
+    GameAction.Lizard: GameAction.Rock,
     GameAction.Spock: GameAction.Paper,
-    GameAction.Spock: GameAction.Lizzard
+    GameAction.Spock: GameAction.Lizard
 }
 
 user_action_history = []
@@ -44,8 +44,8 @@ def assess_game(user_action, computer_action):
         if computer_action == GameAction.Scissors:
             print("Rock smashes scissors. You won!")
             game_result = GameResult.Victory
-        elif computer_action == GameAction.Lizzard:
-            print("Rock smashes lizzard. You won!")
+        elif computer_action == GameAction.Lizard:
+            print("Rock smashes Lizard. You won!")
             game_result = GameResult.Victory
         elif computer_action == GameAction.Spock:
             print("Spock blasts rock. You lost!")
@@ -62,8 +62,8 @@ def assess_game(user_action, computer_action):
         elif computer_action == GameAction.Spock:
             print("Paper denies spock. You won!")
             game_result = GameResult.Victory
-        elif computer_action == GameAction.Lizzard:
-            print("Lizzard eats paper. You lost!")
+        elif computer_action == GameAction.Lizard:
+            print("Lizard eats paper. You lost!")
             game_result = GameResult.Defeat
         elif computer_action == GameAction.Scissors:
             print("Scissors cuts paper. You lost!")
@@ -74,8 +74,8 @@ def assess_game(user_action, computer_action):
         if computer_action == GameAction.Paper:
             print("Scissors cuts paper. You won!")
             game_result = GameResult.Victory
-        elif computer_action == GameAction.Lizzard:
-            print("Scissors cuts lizzard. You won!")
+        elif computer_action == GameAction.Lizard:
+            print("Scissors cuts Lizard. You won!")
             game_result = GameResult.Victory
         elif computer_action == GameAction.Rock:
             print("Rock smashes scissors. You lost!")
@@ -84,19 +84,19 @@ def assess_game(user_action, computer_action):
             print("Spock blasts scissors. You lost!")
             game_result = GameResult.Defeat
         
-    # You picked Lizzard
-    elif user_action == GameAction.Lizzard:
+    # You picked Lizard
+    elif user_action == GameAction.Lizard:
         if computer_action == GameAction.Paper:
-            print("Lizzard eats paper. You won!")
+            print("Lizard eats paper. You won!")
             game_result = GameResult.Victory
         elif computer_action == GameAction.Spock:
-            print("Lizzard bites Spock. You won!")
+            print("Lizard bites Spock. You won!")
             game_result = GameResult.Victory
         elif computer_action == GameAction.Rock:
-            print("Rock smashes lizzard. You lost!")
+            print("Rock smashes Lizard. You lost!")
             game_result = GameResult.Defeat
         elif computer_action == GameAction.Scissors:
-            print("Scissors cuts lizzard. You lost!")
+            print("Scissors cuts Lizard. You lost!")
             game_result = GameResult.Defeat
 
     # You picked Spock
@@ -110,8 +110,8 @@ def assess_game(user_action, computer_action):
         elif computer_action == GameAction.Paper:
             print("Paper denies Spock. You lost!")
             game_result = GameResult.Defeat
-        elif computer_action == GameAction.Lizzard:
-            print("Lizzard bites Spock. You lost!")
+        elif computer_action == GameAction.Lizard:
+            print("Lizard bites Spock. You lost!")
             game_result = GameResult.Defeat
 
     return game_result
